@@ -17,11 +17,11 @@ void setup() {
   Serial.begin(115200);
   Serial.println(F("AHT20+BMP280 test"));
 
-  while (myAHT20.begin() != true) {
-    Serial.println(F("No se ha conectado AHT20 o falló al cargar el coeficiente de calibración")); //(F()) guarda el string en la Flash para mantener la memoria dinámica libre
-    delay(5000);
-  }
-  Serial.println(F("AHT20 OK"));
+  // while (myAHT20.begin() != true) {
+  //   Serial.println(F("No se ha conectado AHT20 o falló al cargar el coeficiente de calibración")); //(F()) guarda el string en la Flash para mantener la memoria dinámica libre
+  //   delay(5000);
+  // }
+  // Serial.println(F("AHT20 OK"));
   
   if (!bmp.begin()) {
     Serial.println(F("No se encuentra un sensor BMP280 compatible, revisa la conexión"));
@@ -40,7 +40,7 @@ void loop() {
   float temperature = myAHT20.getTemperature();
   float humidity = myAHT20.getHumidity();
   float pressure = bmp.readPressure();
-
+  
 
   {
   //Impresion de Resultados
@@ -53,6 +53,8 @@ void loop() {
     Serial.print("Presion: ");
     Serial.print(pressure, 2);
     Serial.println("Pa");
+
+    Serial.println("Qué da myAHT20.begin()? " + String(myAHT20.begin()));
 
     Serial.println();
   }
